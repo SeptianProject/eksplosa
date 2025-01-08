@@ -1,17 +1,21 @@
 import logo from './images/logo.png';
 import heroImage from './images/heroImage.png';
-import batikBlue from './images/batikBlue.png'
-import batikWhite from './images/batikWhite.png'
-
-import jawa from './images/jawa.png'
-import madura from './images/madura.png'
-import sunda from './images/sunda.png'
-import bali from './images/bali.png'
-import sumatera from './images/sumatera.png'
+import batikBlue from './images/batik/batikBlue.png'
+import batikWhite from './images/batik/batikWhite.png'
+import jawa from './images/languageArea/jawa.png'
+import madura from './images/languageArea/madura.png'
+import sunda from './images/languageArea/sunda.png'
+import bali from './images/languageArea/bali.png'
+import sumatera from './images/languageArea/sumatera.png'
 import video from './images/video.png'
+import welcomeEmote from './images/emote/welcomeEmote.png'
+import informEmote from './images/emote/informEmote.png'
+import successEmote from './images/emote/successEmote.png'
+import spiritEmote from './images/emote/spiritEmote.png'
 
 export const assets = {
-     logo, heroImage, batikBlue, batikWhite, video
+     logo, heroImage, batikBlue, batikWhite, video,
+     welcomeEmote, informEmote, successEmote, spiritEmote
 }
 
 export const languageData = [
@@ -72,6 +76,31 @@ export const footerItems = {
                title: '+62345678910',
           }, {
                title: '@eksplosa.dev'
+          }
+     ]
+}
+
+export const modalDatas = {
+     mapPage: [
+          {
+               image: welcomeEmote,
+               title: 'Halo, Selamat Datang!',
+               description: 'Selamat datang di peta bahasa Eksplosa! Mari mulai petualanganmu menjelajahi keindahan bahasa daerah dan ciptakan pengalaman eksplorasi yang tak terlupakan.'
+          }, {
+               image: informEmote,
+               title: 'Petunjuk Peta',
+               description: 'Arahkan kursor untuk melihat informasi singkat, lalu klik provinsi pilihanmu untuk mulai menjelajahi kekayaan bahasa daerah.'
+          }
+     ],
+     quizPage: [
+          {
+               image: successEmote,
+               title: 'Wah Selamat!',
+               description: 'Kamu telah menyelesaikan level ini dengan sangat baik, Gaca ikut bangga sama kamu, terus belajar di level selanjutnya ya!'
+          }, {
+               image: spiritEmote,
+               title: 'Tetap Semangat!',
+               description: 'Jangan menyerah! Coba lagi dan raih hasil terbaikmu. Gaca selalu ada untuk mendukungmu!'
           }
      ]
 }
