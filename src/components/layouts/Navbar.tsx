@@ -1,27 +1,24 @@
-import { assets, navItems } from "../../assets"
-import { Link } from "react-router"
-import Button from "../elements/Button"
+import React from "react"
+import { assets } from "../../assets"
+import useUi from "../../hooks/useUi"
+import HamburgerMenu from "../fragments/HamburgerMenu"
+import NavItems from "../fragments/NavItems"
 
 const Navbar = () => {
+     const [hamburgerActive, setHamburgerActive] = React.useState(false)
+     const { screenSize } = useUi()
+
      return (
-          <nav className='top-0 flex items-end justify-between w-full px-14 py-5'>
+          <nav className='top-0 flex items-center md:items-end justify-between w-full 
+          px-6 py-2 md:px-14 md:py-5 bg-white shadow-md shadow-black/20'>
                <div className=''>
-                    <img src={assets.logo} alt="" />
+                    <img src={assets.logo} alt="Logo" className="scale-90" />
                </div>
-               <div className="flex items-center gap-x-9">
-                    <ul className='flex items-center justify-center gap-x-9'>
-                         {navItems.map((item, index) => (
-                              <Link key={index} to={item.path}
-                                   className="text-[#2D2D2D] font-semibold text-sm font-poppins">
-                                   {item.title}
-                              </Link>
-                         ))}
-                    </ul>
-                    <Button
-                         title="Masuk"
-                         onClick={() => { }}
-                    />
-               </div>
+               <NavItems />
+               {screenSize === 'mobile' &&
+                    <HamburgerMenu
+                         isActive={hamburgerActive}
+                         handleActive={() => setHamburgerActive(!hamburgerActive)} />}
           </nav>
      )
 }

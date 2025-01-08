@@ -4,7 +4,7 @@ import AppRouter from './routes/AppRouter'
 
 const App = () => {
   return (
-    <div className='bg-white min-h-screen'>
+    <div className='bg-white min-h-screen w-full overflow-hidden'>
       <Navbar />
       <AppRouter />
       <Footer />

@@ -2,7 +2,7 @@ import CardInformation from "../fragments/CardInformation"
 
 const ListCardInformation = () => {
      return (
-          <div className="grid grid-cols-2 gap-x-5 gap-y-10 z-10 w-full">
+          <div className="grid grid-cols-1 px-6 md:px-0 md:grid-cols-2 gap-x-5 gap-y-6 md:gap-y-10 z-10 w-full">
                <CardInformation
                     number={1}
                     title="980,870"
