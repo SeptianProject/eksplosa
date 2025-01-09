@@ -1,58 +1,35 @@
-import { IoIosArrowBack } from 'react-icons/io'
+import React from 'react'
 import ModalLayout from '../layouts/ModalLayout'
 import { modalDatas } from '../../assets'
-import React from 'react'
+import WrapperPage from './Wrapper'
+import { useAppDispatch, useAppSelector } from '../../redux/hook'
+import { RootState } from '../../redux/store'
+import { showModal } from '../../redux/slices/modalSlice'
 
 const MapPage = () => {
-     const [currentModalIndex, setCurrentModalIndex] = React.useState<number>(0)
-     const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false)
+     const dispatch = useAppDispatch()
+     const { isOpen, currentIndex } = useAppSelector((state: RootState) => state.modal)
 
      React.useEffect(() => {
           const timer = setTimeout(() => {
-               setIsModalOpen(true)
+               dispatch(showModal({ type: 'map' }))
           }, 500);
 
           return () => clearTimeout(timer)
-     }, [])
+     }, [dispatch])
 
-     const handleNext = () => {
-          if (currentModalIndex < modalDatas.mapPage.length - 1) {
-               setIsModalOpen(false)
-
-               setTimeout(() => {
-                    setCurrentModalIndex(prev => prev + 1)
-                    setIsModalOpen(true)
-               }, 500);
-          } else {
-               setIsModalOpen(false)
-          }
-     }
-
-     const handleClose = () => {
-          setIsModalOpen(false)
-     }
+     const currentModalData = modalDatas.mapPage[currentIndex]
 
      return (
-          <section className='relative pt-10 min-h-screen'>
-               {modalDatas.mapPage.map((modalData, index) => (
+          <WrapperPage>
+               {currentModalData && (
                     <ModalLayout
-                         key={index}
-                         isQuizModal={false}
-                         image={modalData.image}
-                         title={modalData.title}
-                         description={modalData.description}
-                         isOpen={isModalOpen && currentModalIndex === index}
-                         onClose={handleClose}
-                         onNext={handleNext}
-                         isLastModal={index === modalDatas.mapPage.length - 1}
+                         image={currentModalData.image}
+                         title={currentModalData.title}
+                         description={currentModalData.description}
+                         isOpen={isOpen}
                     />
-               ))}
-               <button
-                    type='button'
-                    onClick={() => window.history.back()}
-                    className='absolute top-10 left-20 bg-blueAccent rounded-md p-1'>
-                    <IoIosArrowBack className='size-7 text-primary' />
-               </button>
+               )}
                <div className='text-center space-y-2'>
                     <h1 className='text-4xl font-bold'>Peta Bahasa Daerah.</h1>
                     <p className='font-medium text-darkText/80'>
@@ -70,7 +47,7 @@ const MapPage = () => {
                          loading="lazy"
                     />
                </div>
-          </section>
+          </WrapperPage>
      )
 }
 

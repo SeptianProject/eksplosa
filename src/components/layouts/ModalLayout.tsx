@@ -1,15 +1,16 @@
 import React from 'react'
 import { IoIosArrowRoundForward } from 'react-icons/io';
+import { useAppDispatch, useAppSelector } from '../../redux/hook';
+import { RootState } from '../../redux/store';
+import { hideModal, progressModal } from '../../redux/slices/modalSlice';
+import { modalDatas } from '../../assets';
 
 interface ModalLayoutProps {
      image: string,
      title: string,
      description: string
      isOpen?: boolean,
-     onClose?: () => void,
-     onNext?: () => void,
-     isLastModal?: boolean,
-     isQuizModal?: boolean
+     onAction?: () => void,
 }
 
 const ModalLayout: React.FC<ModalLayoutProps> = ({
@@ -17,14 +18,36 @@ const ModalLayout: React.FC<ModalLayoutProps> = ({
      title,
      description,
      isOpen,
-     onClose,
-     onNext,
-     isLastModal,
-     isQuizModal
+     onAction
 }) => {
+     const dispatch = useAppDispatch()
+     const { modalType, variant, currentIndex } = useAppSelector((state: RootState) => state.modal)
+
+     const handleClose = () => {
+          dispatch(hideModal())
+     }
+
+     const handleAction = () => {
+          if (onAction) {
+               onAction()
+          } else if (modalType === 'map') {
+               dispatch(progressModal())
+          } else {
+               dispatch(hideModal())
+          }
+     }
+
+     const getButtonText = () => {
+          if (modalType === 'quiz') {
+               return variant === 'success' ? 'Lanjutkan' : 'Ulangi Kuis'
+          }
+
+          return currentIndex === modalDatas.mapPage.length - 1 ? 'Oke, Paham' : 'Selanjutnya'
+     }
+
      return (
           <>
-               <div onClick={onClose}
+               <div onClick={handleClose}
                     className={`fixed inset-0 bg-black/50 backdrop-blur-sm transition-all duration-300
                     ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} />
                <div className={`fixed h-[28rem] w-[38rem] bg-white top-1/2 left-1/2 transform 
@@ -42,21 +65,21 @@ const ModalLayout: React.FC<ModalLayoutProps> = ({
                                    {description}
                               </p>
                          </div>
-                         <div className={`${isQuizModal ? 'flex items-center justify-center gap-x-5' : ''}`}>
-                              {isQuizModal &&
+                         <div className={`${modalType === 'quiz' ? 'flex items-center justify-center gap-x-5' : ''}`}>
+                              {modalType === 'quiz' && variant === 'failure' &&
                                    <button
-                                        onClick={onClose}
+                                        onClick={handleClose}
                                         className="text-white flex items-center justify-center bg-danger 
                                         py-2 w-40 rounded-lg text-sm xs:text-base">
                                         Keluar
                                    </button>
                               }
                               <button
-                                   onClick={onNext}
-                                   className={`text-white flex items-center bg-primary w-fit rounded-lg text-sm xs:text-base
-                                   ${isQuizModal ? 'py-2 w-40 justify-center' : 'xs:pl-8 xs:pr-4 pl-6 pr-2 py-1'}`}>
-                                   {isLastModal && isQuizModal ? 'Ulangi Kuis' : isLastModal && isQuizModal === false ? 'Oke, Paham' : 'Selanjutnya'}
-                                   {isQuizModal ? null : <IoIosArrowRoundForward className="text-white size-7 xs:size-9 ml-2" />}
+                                   onClick={handleAction}
+                                   className={`text-white flex items-center bg-primary w-fit rounded-lg text-sm xs:text-base px-5
+                                   ${modalType === 'quiz' ? 'py-2 w-40 justify-center' : 'xs:pl-8 xs:pr-4 pl-6 pr-2 py-1'}`}>
+                                   {getButtonText()}
+                                   {modalType !== 'quiz' && <IoIosArrowRoundForward className="text-white size-7 xs:size-9 ml-2" />}
                               </button>
                          </div>
                     </div>
