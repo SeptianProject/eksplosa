@@ -8,11 +8,14 @@ import { RootState } from "../../redux/store";
 import { hideModal } from "../../redux/slices/modalSlice";
 import { QUIZ_LEVELS } from "../../constant";
 import { retryQuiz, setSelectedLevel } from "../../redux/slices/quizSlice";
+import BadgeButton from "../elements/BadgeButton";
 
 const QuizPage = () => {
      const dispatch = useAppDispatch()
      const { selectedLevel } = useAppSelector((state: RootState) => state.quiz)
      const { isOpen, variant } = useAppSelector((state: RootState) => state.modal)
+
+     const models = [1, 2, 3, 4, 5]
 
      // const handleQuizCompleted = () => {
      //      const isCorrect = answer === currentQuestion?.correctAnswer
@@ -63,14 +66,14 @@ const QuizPage = () => {
                               />
                          ))}
                     </div>
-                    {/* <div className="border-t border-primary">
-                         <div className="flex items-center justify-center gap-x-5 pt-3">
+                    <div className="border-t border-primary">
+                         <div className="flex items-center justify-center gap-x-2 pt-3">
                               {models.map((number, index) => (
                                    <BadgeButton key={index} isNumber number={number}
                                         className="size-10" />
                               ))}
                          </div>
-                    </div> */}
+                    </div>
                </div>
           </Wrapper>
      )
