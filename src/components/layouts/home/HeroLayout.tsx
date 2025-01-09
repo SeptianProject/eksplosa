@@ -8,7 +8,7 @@ const HeroLayout = () => {
 
 
      return (
-          <div className="relative pt-14 md:pt-20 min-h-[28rem] xs:min-h-[32rem] lg:min-h-[150vh]">
+          <div className="relative min-h-[28rem] xs:min-h-[32rem] lg:min-h-[150vh]">
                <div className="px-6 md:pl-14 md:max-w-[55rem] space-y-3 md:space-y-5">
                     <h1 className="text-xl xs:text-2xl md:text-4xl lg:text-5xl tracking-wide 
                     leading-[1.20] font-medium">
@@ -22,7 +22,7 @@ const HeroLayout = () => {
                     </button>
                </div>
                <img src={assets.heroImage} alt="HeroImage"
-                    className="object-cover absolute bottom-0 lg:top-0 pointer-events-none"
+                    className="object-cover absolute bottom-0 lg:-top-20 pointer-events-none"
                />
           </div>
      )

@@ -11,7 +11,7 @@ const HomePage = () => {
      return (
           <>
                <Navbar />
-               <section >
+               <section className="py-32 md:py-48" >
                     <HeroLayout />
                     <AboutLayout />
                     <LanguageLayout />

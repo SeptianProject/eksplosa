@@ -39,7 +39,7 @@ const ModalLayout: React.FC<ModalLayoutProps> = ({
 
      const getButtonText = () => {
           if (modalType === 'quiz') {
-               return variant === 'success' ? 'Lanjutkan' : 'Ulangi Kuis'
+               return variant === 'success' ? 'Selanjutnya' : variant === 'info' ? 'Baiklah' : 'Ulangi Kuis'
           }
 
           return currentIndex === modalDatas.mapPage.length - 1 ? 'Oke, Paham' : 'Selanjutnya'
@@ -70,16 +70,19 @@ const ModalLayout: React.FC<ModalLayoutProps> = ({
                                    <button
                                         onClick={handleClose}
                                         className="text-white flex items-center justify-center bg-danger 
-                                        py-2 w-40 rounded-lg text-sm xs:text-base">
+                                        py-3 w-40 px-8 rounded-lg text-sm xs:text-base">
                                         Keluar
                                    </button>
                               }
                               <button
                                    onClick={handleAction}
-                                   className={`text-white flex items-center bg-primary w-fit rounded-lg text-sm xs:text-base px-5
-                                   ${modalType === 'quiz' ? 'py-2 w-40 justify-center' : 'xs:pl-8 xs:pr-4 pl-6 pr-2 py-1'}`}>
+                                   className={`text-white flex items-center bg-primary
+                                        rounded-lg text-sm xs:text-base px-8
+                                        ${modalType === 'quiz' ? 'py-3 w-40 justify-center' : 'xs:pl-8 xs:pr-4 pl-6 pr-2 py-1 w-fit'}`}>
                                    {getButtonText()}
-                                   {modalType !== 'quiz' && <IoIosArrowRoundForward className="text-white size-7 xs:size-9 ml-2" />}
+                                   {modalType !== 'quiz' && (<IoIosArrowRoundForward
+                                        className="text-white size-7 xs:size-9 ml-2" />
+                                   )}
                               </button>
                          </div>
                     </div>

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { QUIZ_LEVELS } from "../../constant"
+import { QUIZ_LEVELS } from "../../assets/constant"
 import { QuizQuestion } from "../../types"
 
 interface QuizState {
@@ -10,6 +10,7 @@ interface QuizState {
      isQuizCompleted: boolean
      score: number
      totalQuestions: number
+     selectedWords: string[]
 }
 
 const initialState: QuizState = {
@@ -19,7 +20,8 @@ const initialState: QuizState = {
      currentQuestionIndex: 0,
      isQuizCompleted: false,
      score: 0,
-     totalQuestions: QUIZ_LEVELS[0].questions.length
+     totalQuestions: QUIZ_LEVELS[0].questions.length,
+     selectedWords: []
 }
 
 const quizSlice = createSlice({
@@ -40,10 +42,13 @@ const quizSlice = createSlice({
           setAnswer: (state, action: PayloadAction<string>) => {
                state.answer = action.payload
           },
+          setSelectedWords: (state, action: PayloadAction<string[]>) => {
+               state.selectedWords = action.payload
+          },
           nextQuestion: (state) => {
                const level = QUIZ_LEVELS.find(l => l.level === state.selectedLevel)
                if (level) {
-                    const isCorrect = state.answer === state.currentQuestion?.correctAnswer
+                    const isCorrect = state.answer === state.currentQuestion?.correctAnswer.join(' ')
                     if (isCorrect) {
                          state.score += 1
                     }
@@ -56,6 +61,17 @@ const quizSlice = createSlice({
                          state.isQuizCompleted = true
                     }
                     state.answer = ''
+                    state.selectedWords = []
+               }
+          },
+          completeLevel: (state) => {
+               const currentLevelIndex = QUIZ_LEVELS.findIndex(level => level.level === state.selectedLevel)
+               if (currentLevelIndex < QUIZ_LEVELS.length - 1) {
+                    state.selectedLevel = QUIZ_LEVELS[currentLevelIndex + 1].level
+                    state.currentQuestion = QUIZ_LEVELS[currentLevelIndex + 1].questions[0]
+                    state.currentQuestionIndex = 0
+                    state.isQuizCompleted = false
+                    state.score = 0
                }
           },
           retryQuiz: (state) => {
@@ -65,6 +81,7 @@ const quizSlice = createSlice({
                     state.answer = ''
                     state.isQuizCompleted = false
                     state.score = 0
+                    state.selectedWords = []
                }
           },
           resetQuiz: (state) => {
@@ -72,6 +89,7 @@ const quizSlice = createSlice({
                state.isQuizCompleted = false
                state.score = 0
                state.currentQuestionIndex = 0
+               state.selectedWords = []
           }
      }
 })
@@ -81,6 +99,8 @@ export const {
      setAnswer,
      resetQuiz,
      nextQuestion,
-     retryQuiz
+     retryQuiz,
+     completeLevel,
+     setSelectedWords
 } = quizSlice.actions
 export default quizSlice.reducer

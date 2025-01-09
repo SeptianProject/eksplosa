@@ -101,6 +101,10 @@ export const modalDatas = {
                image: spiritEmote,
                title: 'Tetap Semangat!',
                description: 'Jangan menyerah! Coba lagi dan raih hasil terbaikmu. Gaca selalu ada untuk mendukungmu!'
+          }, {
+               image: informEmote,
+               title: 'Ngapunten Nggih!',
+               description: 'Selesaikan level ini dengan baik, dan lanjutkan perjalananmu ke level selanjutnya!'
           }
-     ]
+     ],
 }

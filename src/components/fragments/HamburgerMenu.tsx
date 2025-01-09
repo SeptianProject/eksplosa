@@ -11,7 +11,7 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = React.memo(({
      isActive
 }) => {
      return (
-          <button onClick={handleActive} className={`lg:hidden w-6
+          <button onClick={handleActive} className={`lg:hidden w-6 z-50
           ${isActive ? 'space-y-0' : 'space-y-1'}`}>
                <HamburgerItem isActive={isActive}
                     className={`${isActive ? '-rotate-45' : ''}`} />

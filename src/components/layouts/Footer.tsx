@@ -3,7 +3,7 @@ import FooterItems from "../fragments/FooterItems"
 
 const Footer = () => {
      return (
-          <footer className="mt-40 md:mt-60 w-full px-6 space-y-5 pb-10 md:px-16 md:h-80">
+          <footer className="mt-10 md:mt-20 w-full px-6 space-y-5 pb-10 md:px-16 md:h-80">
                <div className="flex flex-col gap-y-10 items-start pb-6 md:pb-10
                border-b border-darkText md:flex-row md:gap-x-24">
                     <div>

@@ -2,7 +2,7 @@ export interface QuizQuestion {
      id: string
      question: string
      options: string[]
-     correctAnswer: string
+     correctAnswer: string[]
      level: string
 }
 
@@ -19,5 +19,5 @@ export interface ModalData {
      description: string
 }
 
-export type ModalType = 'map' | 'quiz'
-export type QuizModalVariant = 'success' | 'failure'
+export type ModalType = 'map' | 'quiz' | 'level'
+export type QuizModalVariant = 'success' | 'failure' | 'info'
