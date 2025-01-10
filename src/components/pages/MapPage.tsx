@@ -1,14 +1,12 @@
 import React from 'react'
-import ModalLayout from '../layouts/ModalLayout'
-import { modalDatas } from '../../assets'
 import WrapperPage from './Wrapper'
-import { useAppDispatch, useAppSelector } from '../../redux/hook'
-import { RootState } from '../../redux/store'
+import { useAppDispatch } from '../../redux/hook'
 import { showModal } from '../../redux/slices/modalSlice'
+import Button from '../elements/Button'
 
 const MapPage = () => {
      const dispatch = useAppDispatch()
-     const { isOpen, currentIndex } = useAppSelector((state: RootState) => state.modal)
+     const languageData = ['Jawa', 'Sunda', 'Madura', 'Bali', 'Sumatera']
 
      React.useEffect(() => {
           const timer = setTimeout(() => {
@@ -18,19 +16,9 @@ const MapPage = () => {
           return () => clearTimeout(timer)
      }, [dispatch])
 
-     const currentModalData = modalDatas.mapPage[currentIndex]
-
      return (
           <WrapperPage>
-               {currentModalData && (
-                    <ModalLayout
-                         image={currentModalData.image}
-                         title={currentModalData.title}
-                         description={currentModalData.description}
-                         isOpen={isOpen}
-                    />
-               )}
-               <div className='text-center space-y-2'>
+               <div className='text-center space-y-2 pt-40'>
                     <h1 className='text-4xl font-bold'>Peta Bahasa Daerah.</h1>
                     <p className='font-medium text-darkText/80'>
                          Jelajahi berbagai bahasa daerah yang tersebar di seluruh wilayah Indonesia!
@@ -38,14 +26,15 @@ const MapPage = () => {
                </div>
                {/* map */}
                <div className=''>
-                    <iframe
-                         src="https://www.google.com/maps/d/u/0/embed?mid=1JjT9GKZ4d1j4c7J3Hq6a4l7i7vQ"
-                         width="100%"
-                         height="480"
-                         style={{ border: 0 }}
-                         allowFullScreen
-                         loading="lazy"
-                    />
+                    <div className='flex items-center justify-center gap-x-4 pt-20'>
+                         {languageData.map((language, index) => (
+                              <Button
+                                   key={index}
+                                   title={language}
+                                   onClick={() => { }}
+                              />
+                         ))}
+                    </div>
                </div>
           </WrapperPage>
      )

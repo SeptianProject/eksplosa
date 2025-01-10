@@ -19,5 +19,22 @@ export interface ModalData {
      description: string
 }
 
-export type ModalType = 'map' | 'quiz' | 'level'
+export type ModalType = 'map' | 'quiz' | 'auth'
 export type QuizModalVariant = 'success' | 'failure' | 'info'
+
+export interface BaseModalProps {
+     isOpen: boolean
+     onClose: () => void
+}
+
+export interface ContentModalProps extends BaseModalProps {
+     title: string
+     description: string
+     image?: string
+     onAction: () => void
+}
+
+export interface AuthModalProps extends BaseModalProps {
+     title: string
+     description: string
+}

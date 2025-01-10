@@ -17,8 +17,7 @@ const Button: React.FC<ButtonProps> = React.memo(({
           <button
                type={type}
                onClick={onClick}
-               className={`${className} text-white bg-primary rounded-lg py-2 px-6 
-                    `}>
+               className={`${className} text-white bg-primary rounded-lg py-2 px-6 `}>
                {title}
           </button>
      )

@@ -9,7 +9,7 @@ interface WrapperProps {
 
 const Wrapper: React.FC<WrapperProps> = ({ children, className }) => {
      return (
-          <section className='relative min-h-screen'>
+          <section className='relative lg:min-h-screen'>
                <BadgeButton
                     isNumber={false}
                     icon={IoIosArrowBack}

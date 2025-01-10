@@ -5,9 +5,10 @@ import React from 'react'
 
 interface NavItemsProps {
      hamburgerActive?: boolean
+     onLogin: () => void
 }
 
-const NavItems: React.FC<NavItemsProps> = ({ hamburgerActive }) => {
+const NavItems: React.FC<NavItemsProps> = ({ hamburgerActive, onLogin }) => {
      return (
           <div className={`flex items-center py-3 rounded-b-[3rem] gap-x-9 gap-y-4 flex-col w-full
           fixed top-16 left-1/2 -translate-x-1/2 bg-primary md:py-0 md:rounded-none
@@ -25,7 +26,7 @@ const NavItems: React.FC<NavItemsProps> = ({ hamburgerActive }) => {
                </ul>
                <Button
                     title="Masuk"
-                    onClick={() => { }}
+                    onClick={onLogin}
                />
           </div>
      )

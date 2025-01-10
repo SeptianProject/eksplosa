@@ -13,8 +13,11 @@ import informEmote from './images/emote/informEmote.png'
 import successEmote from './images/emote/successEmote.png'
 import spiritEmote from './images/emote/spiritEmote.png'
 
+import googleIcon from './images/google.svg'
+import facebookIcon from './images/facebook.svg'
+
 export const assets = {
-     logo, heroImage, batikBlue, batikWhite, video,
+     logo, heroImage, batikBlue, batikWhite, video, googleIcon, facebookIcon,
      welcomeEmote, informEmote, successEmote, spiritEmote
 }
 
@@ -47,10 +50,11 @@ export const navItems = [
      }, {
           title: 'Peta',
           path: '/peta'
-     }, {
-          title: 'Quiz',
-          path: '/quiz'
      }
+     // , {
+     //      title: 'Quiz',
+     //      path: '/quiz'
+     // }
 ]
 
 export const footerItems = {
@@ -81,15 +85,26 @@ export const footerItems = {
 }
 
 export const modalDatas = {
+     auth: {
+          title: 'Mulai Penjelajahanmu!',
+          description: 'Bergabung bersama Eksplosa dan temukan berbagai hal menarik disini, bergabunglah dengan metode favoritmu!',
+          image: null
+     },
      mapPage: [
           {
                image: welcomeEmote,
                title: 'Halo, Selamat Datang!',
-               description: 'Selamat datang di peta bahasa Eksplosa! Mari mulai petualanganmu menjelajahi keindahan bahasa daerah dan ciptakan pengalaman eksplorasi yang tak terlupakan.'
+               description: [
+                    'Selamat datang di peta bahasa Eksplosa! Mari mulai petualanganmu menjelajahi keindahan bahasa daerah dan ciptakan pengalaman eksplorasi yang tak terlupakan.',
+                    'Selamat datang di peta bahasa Eksplosa! Mari mulai petualanganmu menjelajahi keindahan bahasa daerah dan ciptakan pengalaman eksplorasi yang tak terlupakan.'
+               ]
           }, {
                image: informEmote,
                title: 'Petunjuk Peta',
-               description: 'Arahkan kursor untuk melihat informasi singkat, lalu klik provinsi pilihanmu untuk mulai menjelajahi kekayaan bahasa daerah.'
+               description: [
+                    'Arahkan kursor untuk melihat informasi singkat, lalu klik provinsi pilihanmu untuk mulai menjelajahi kekayaan bahasa daerah.',
+                    'Putar perangkat Anda ke mode landscape untuk mulai menjelajahi peta.'
+               ]
           }
      ],
      quizPage: [
